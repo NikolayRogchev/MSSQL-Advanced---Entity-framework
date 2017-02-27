@@ -9,9 +9,10 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Introduction_To_DB_Apps</RootNamespace>
     <AssemblyName>Introduction_To_DB_Apps</AssemblyName>
-    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -47,16 +48,18 @@
     <Compile Include="Initialize.cs" />
     <Compile Include="Minions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Towns.cs" />
     <Compile Include="Villains.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="CreateDatabase.sql" />
-    <Content Include="CreateTables.sql" />
-    <Content Include="InsertData.sql" />
+    <Content Include="Scripts\CreateDatabase.sql" />
+    <Content Include="Scripts\CreateTables.sql" />
+    <Content Include="Scripts\InsertData.sql" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

@@ -6,18 +6,16 @@ namespace Introduction_To_DB_Apps
 {
     class Initialize
     {
-        
-
         public static bool InitializeDatabase()
         {
             try
             {
-                CreateDatabase(File.ReadAllText("../../CreateDatabase.sql"));
-                if (CreateTables(File.ReadAllText("../../CreateTables.sql")))
+                CreateDatabase(File.ReadAllText("../../Scripts/CreateDatabase.sql"));
+                if (CreateTables(File.ReadAllText("../../Scripts/CreateTables.sql")))
                 {
                     Console.WriteLine("Tables created successfully!");
                 }
-                int affectedRows = InsertData(File.ReadAllText("../../InsertData.sql"));
+                int affectedRows = InsertData(File.ReadAllText("../../Scripts/InsertData.sql"));
                 Console.WriteLine("Successfully inserted {0} rows", affectedRows);
             }
             catch (Exception e)
@@ -29,22 +27,22 @@ namespace Introduction_To_DB_Apps
         }
         static void CreateDatabase(string script)
         {
-            App.connectionStr = @"Server=NICK-PC\SQLEXPRESS;Database=master;Integrated Security=true";
             SqlConnection connection = App.EstablishConnection();
+            connection.ChangeDatabase("master");           
             using (connection)
             {
                 try
                 {
                     SqlCommand cmd = new SqlCommand(script, connection);
                     cmd.ExecuteNonQuery();
+                    Console.WriteLine("Database created successfully.");
+                    connection.ChangeDatabase("MinionsDB");
                 }
                 catch (Exception e)
                 {
                     Console.WriteLine(e.Message);
-                    Console.ReadKey();
                 }
             }
-            App.connectionStr = @"Server=NICK-PC\SQLEXPRESS;Database=MinionsDB;Integrated Security=true";
         }
         static bool CreateTables(string script)
         {
@@ -65,7 +63,6 @@ namespace Introduction_To_DB_Apps
             }
             return true;
         }
-
         static int InsertData(string script)
         {
             SqlConnection dbConn = new SqlConnection(App.connectionStr);
@@ -86,7 +83,5 @@ namespace Introduction_To_DB_Apps
             }
             return affectedRows;
         }
-
-        
     }
 }

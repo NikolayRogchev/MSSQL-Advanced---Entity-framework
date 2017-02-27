@@ -1,3 +1,4 @@
+
 CREATE TABLE Minions(
 Id int primary key identity,
 Name nvarchar(50) not null,
